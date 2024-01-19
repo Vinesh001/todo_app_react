@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { createTodo, updateTodo } = require('./types');
 const {todo} = require('./db.js')
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors())
 
 mongoose.connect('mongodb+srv://vineshbaghel10:1b7u4G2Cc07VJnAd@cluster0.v1oofyl.mongodb.net/');
 
@@ -32,7 +34,7 @@ app.post('/todo', async function(req, res){
 app.get('/todos', async function(req, res){
     const todos = await todo.find({});
     res.json({
-        message:todos
+        todos:todos
     })
 })
 
