@@ -1,10 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const { createTodo, updateTodo } = require('./types');
-const {todo} = require('db.js')
+const {todo} = require('./db.js')
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+mongoose.connect('mongodb+srv://vineshbaghel10:1b7u4G2Cc07VJnAd@cluster0.v1oofyl.mongodb.net/');
 
 app.post('/todo', async function(req, res){
     const createPayload = req.body;
